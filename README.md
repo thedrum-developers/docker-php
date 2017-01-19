@@ -8,7 +8,7 @@
 
 # Example Docker Compose Configuration
 
-The following is a basic example configuration for using The Drum PHP docker images alongside Xdebug.
+The following is a basic example configuration for using The Drum PHP Docker images alongside Xdebug.
 
 It uses [Compose's environment variable substitution](https://docs.docker.com/compose/environment-variables/)
 to specify configuration which changes on a per-machine basis.
@@ -31,9 +31,12 @@ version: '2'
 services:
     nginx:
         image: nginx:latest
+        ports:
+          - 80:80
         volumes:
           - /var/www/my-app:/var/www/my-app
-          - /data/docker-config/nginx:/etc/nginx
+          - /data/docker-config/nginx/sites-enabled/nginx.conf:/etc/nginx/nginx.conf
+          - /data/docker-config/nginx/sites-enabled/example.conf:/etc/nginx/sites-enabled/example.conf
         depends_on:
           - php
 
@@ -44,6 +47,80 @@ services:
         volumes:
           - /var/www/my-app:/var/www/my-app
           - /data/docker-config/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+```
+
+### nginx.conf
+
+```
+user  nginx;
+worker_processes  1;
+
+error_log  /var/log/nginx/error.log warn;
+pid        /var/run/nginx.pid;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  /var/log/nginx/access.log  main;
+
+    sendfile        on;
+
+    keepalive_timeout  65;
+    include /etc/nginx/conf.d/*.conf;
+    include /etc/nginx/sites-enabled/*.conf;
+}
+```
+
+### example.conf
+
+This is a modified version of [Symfony's suggested nginx config](http://symfony.com/doc/current/setup/web_server_configuration.html#nginx).
+
+```
+server {
+        listen 80;
+
+        root /var/www/my-app;
+        index index.php;
+
+        server_name example.dev;
+
+        access_log /var/log/nginx/example.dev.access.log;
+        error_log /var/log/nginx/example.dev.error.log;
+
+        location / {
+            try_files $uri /index.php$is_args$args;
+        }
+
+        location ~ ^/index\.php(/|$) {
+            fastcgi_pass php:9000;
+            fastcgi_split_path_info ^(.+\.php)(/.*)$;
+            fastcgi_read_timeout 300;
+            include fastcgi_params;
+
+            fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+            fastcgi_param DOCUMENT_ROOT $realpath_root;
+
+            fastcgi_buffers 16 16k;
+            fastcgi_buffer_size 32k;
+            fastcgi_ignore_client_abort on;
+
+            internal;
+        }
+
+        location ~ \.php$ {
+            return 404;
+        }
+}
+
 ```
 
 ### xdebug.ini

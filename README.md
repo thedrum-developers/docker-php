@@ -5,6 +5,8 @@
  - `5.6-fpm-dev` (*[5.6/fpm/dev/Dockerfile](https://github.com/thedrum-developers/docker-php/blob/master/5.6/fpm/dev/Dockerfile)*)
  - `5.6-apache` (*[5.6/apache/Dockerfile](https://github.com/thedrum-developers/docker-php/blob/master/5.6/apache/Dockerfile)*)
  - `5.6-apache-dev` (*[5.6/apache/dev/Dockerfile](https://github.com/thedrum-developers/docker-php/blob/master/5.6/apache/dev/Dockerfile)*)
+ - `5.5-apache` (*[5.5/apache/Dockerfile](https://github.com/thedrum-developers/docker-php/blob/master/5.5/apache/Dockerfile)*)
+ - `5.5-apache-dev` (*[5.5/apache/dev/Dockerfile](https://github.com/thedrum-developers/docker-php/blob/master/5.5/apache/dev/Dockerfile)*)
 
 # Example Docker Compose Configuration
 

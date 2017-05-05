@@ -49,6 +49,7 @@ services:
         volumes:
           - /var/www/my-app:/var/www/my-app
           - /data/docker-config/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+          - /data/docker-config/php/opcache.ini:/usr/local/etc/php/conf.d/opcache.ini
 ```
 
 ### nginx.conf
@@ -130,4 +131,16 @@ server {
 ```
 xdebug.remote_enable = 1
 xdebug.remote_autostart = 0
+```
+
+### opcache.ini
+
+```
+opcache.memory_consumption=192
+opcache.interned_strings_buffer=16
+opcache.max_accelerated_files=32531
+opcache.revalidate_freq=0
+opcache.fast_shutdown=1
+opcache.enable_cli=1
+opcache.enable=1
 ```

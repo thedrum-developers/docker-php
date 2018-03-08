@@ -1,20 +1,23 @@
 FROM ubuntu:12.04
-MAINTAINER Alexander Schenkel <alex@alexi.ch>
+
+ENV PHP_INI_DIR /etc/php5
 
 VOLUME ["/var/www"]
 
 RUN apt-get update && \
     apt-get install -y \
-      apache2 \
-      php5 \
-      php5-cli \
-      libapache2-mod-php5 \
-      php5-gd \
-      php5-ldap \
-      php5-mysql \
-      php5-pgsql
+        build-essential \
+        curl \
+        apache2 \
+        php5 \
+        php5-cli \
+        libapache2-mod-php5 \
+        php5-gd \
+        php5-mysql \
+        php-pear
 
 RUN a2enmod rewrite
 
 EXPOSE 80
+
 CMD ["/usr/local/bin/run"]

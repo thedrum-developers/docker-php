@@ -1,7 +1,6 @@
 # Supported tags and respective `Dockerfile` links
  - `7.2-fpm`, `7-fpm`, `latest` (*[7.2/fpm/Dockerfile](https://github.com/thedrum-developers/docker-php/blob/master/7.2/fpm/Dockerfile)*)
  - `7.2-fpm-dev` (*[7.2/fpm/dev/Dockerfile](https://github.com/thedrum-developers/docker-php/blob/master/7.2/fpm/dev/Dockerfile)*)
- - `7.2-apache` (*[7.2/apache/Dockerfile](https://github.com/thedrum-developers/docker-php/blob/master/7.2/apache/Dockerfile)*)
  - `7.2-apache-dev` (*[7.2/apache/dev/Dockerfile](https://github.com/thedrum-developers/docker-php/blob/master/7.2/apache/dev/Dockerfile)*)
  - `7.1-fpm` (*[7.1/fpm/Dockerfile](https://github.com/thedrum-developers/docker-php/blob/master/7.1/fpm/Dockerfile)*)
  - `7.1-fpm-dev` (*[7.1/fpm/dev/Dockerfile](https://github.com/thedrum-developers/docker-php/blob/master/7.1/fpm/dev/Dockerfile)*)

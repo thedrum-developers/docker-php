@@ -15,5 +15,5 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install opcache \
     && docker-php-ext-install zip \
     && a2enmod rewrite \
+    && a2enmod proxy_http \
     && a2enmod ssl
-    

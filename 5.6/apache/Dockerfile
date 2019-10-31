@@ -13,4 +13,6 @@ RUN apt-get install -y git zlib1g-dev libmcrypt-dev nano vim --no-install-recomm
     && apt-get clean \
     && docker-php-ext-install mcrypt zip \
     && a2enmod rewrite \
+    && a2enmod proxy \
+    && a2enmod proxy_http \
     && a2enmod ssl

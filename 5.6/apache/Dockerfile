@@ -15,4 +15,5 @@ RUN apt-get install -y git zlib1g-dev libmcrypt-dev nano vim --no-install-recomm
     && a2enmod rewrite \
     && a2enmod proxy \
     && a2enmod proxy_http \
+    && a2enmod headers \
     && a2enmod ssl

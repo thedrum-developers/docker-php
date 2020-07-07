@@ -8,6 +8,9 @@ RUN apt-get update && apt-get install -y \
         libicu-dev \
         libxml2-dev \
         libzip-dev \
+        xvfb \
+        libfontconfig \
+        wkhtmltopdf \
     && docker-php-ext-install pdo pdo_mysql \
     && docker-php-ext-install mysqli \
     && docker-php-ext-enable mysqli \

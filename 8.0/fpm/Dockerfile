@@ -21,3 +21,6 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install opcache \
     && docker-php-ext-install zip \
 	&& docker-php-ext-install soap
+
+RUN pecl install apcu && \
+    docker-php-ext-enable apcu --ini-name docker-php-ext-10-apcu.ini

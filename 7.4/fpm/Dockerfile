@@ -8,6 +8,8 @@ RUN apt-get update && apt-get install -y \
         libicu-dev \
         libxml2-dev \
         libzip-dev \
+        zlib1g-dev \
+        unzip \
         xvfb \
         libfontconfig \
         wkhtmltopdf \

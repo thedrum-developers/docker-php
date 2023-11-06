@@ -1,4 +1,4 @@
-FROM php:8.0-fpm
+FROM php:8.1-fpm
 
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
@@ -22,7 +22,8 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install intl \
     && docker-php-ext-install opcache \
     && docker-php-ext-install zip \
-	&& docker-php-ext-install soap
+	&& docker-php-ext-install soap \
+    && docker-php-ext-install bcmath
 
 RUN pecl install apcu && \
     docker-php-ext-enable apcu --ini-name docker-php-ext-10-apcu.ini
